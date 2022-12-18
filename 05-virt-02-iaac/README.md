@@ -69,6 +69,20 @@ Ansible использует язык python, и производит конфи
 ---
 **Решение**
 
+```
+dmdmdr@ubuntu-station:~$ vboxmanage --version
+6.1.38_Ubuntur153438
+dmdmdr@ubuntu-station:~$ vagrant --version
+Vagrant 2.2.6
+dmdmdr@ubuntu-station:~$ ansible --version
+ansible 2.9.6
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/dmdmdr/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.8.10 (default, Jun 22 2022, 20:18:18) [GCC 9.4.0]
+```
+
 ---
 
 ## Задача 4 (*)
@@ -80,3 +94,13 @@ Ansible использует язык python, и производит конфи
 ```
 docker ps
 ```
+
+---
+**Решение**
+
+```
+vagrant@ubuntu-server1:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+---
