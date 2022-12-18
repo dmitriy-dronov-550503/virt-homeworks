@@ -44,6 +44,14 @@ Hey, Netology
 ```
 Опубликуйте созданный форк в своем репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
 
+---
+**Решение**
+
+https://hub.docker.com/r/bsuirdd/dmitriy_dronov_repo
+
+---
+
+
 ## Задача 2
 
 Посмотрите на сценарий ниже и ответьте на вопрос:
@@ -51,18 +59,47 @@ Hey, Netology
 
 Детально опишите и обоснуйте свой выбор.
 
---
+---
+**Решение**
 
 Сценарий:
 
 - Высоконагруженное монолитное java веб-приложение;
+
+Такое приложение может быть запущено на виртуальной машине, либо на физической машине для того, чтобы иметь однозначное количество выделенных ресурсов.
+Контейнер не может предоставить должную степень обеспечения нагрузки.
+
 - Nodejs веб-приложение;
+
+Для такого приложения идеально подойдёт контейнер, потому что зачастую Nodejs требует много зависимостей, а особых требований к веб-приложению нет.
+
 - Мобильное приложение c версиями для Android и iOS;
+
+Лучше всего подойдёт виртуальная машина, потому что телефоны сильно отличаются от компьютеров периферийными устройствами.
+Их способен обеспечить эмулятор гипервизора. Также можно использовать физическое устройство.
+
 - Шина данных на базе Apache Kafka;
+
+В зависимости от требований нагрузки может быть развёрнуто в виде контейнера или запущено на виртуальной машины.
+
 - Elasticsearch кластер для реализации логирования продуктивного веб-приложения - три ноды elasticsearch, два logstash и две ноды kibana;
+
+Связанные приложения с возможностью кластеризации лучше всего запустить в виде контейнеров.
+
 - Мониторинг-стек на базе Prometheus и Grafana;
+
+Небольшие приложения для которых будет достаточно контейнера.
+
 - MongoDB, как основное хранилище данных для java-приложения;
+
+Может быть запущено в виде контейнера или виртуальной машины в зависимости от требований к системе хранения данных.
+
 - Gitlab сервер для реализации CI/CD процессов и приватный (закрытый) Docker Registry.
+
+Поскольку такие серверы включают в себя множество приложений и зависимостей, лучшим решением является
+размещение их на виртуальных машинах либо физических серверах.
+
+---
 
 ## Задача 3
 
@@ -71,6 +108,43 @@ Hey, Netology
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```;
 - Добавьте еще один файл в папку ```/data``` на хостовой машине;
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
+
+---
+**Решение**
+
+```
+vagrant@ubuntu-server1:~$ docker run -v /data:/data --name centos_d -it centos bash
+[root@fea1b77f79c1 /]# 
+[root@fea1b77f79c1 /]# ls  
+bin  data  dev	etc  home  lib	lib64  lost+found  media  mnt  opt  proc  root	run  sbin  srv	sys  tmp  usr  var
+[root@fea1b77f79c1 /]# cd data
+[root@fea1b77f79c1 data]# touch centos.txt
+[root@fea1b77f79c1 data]# echo "A line written by centos" >> centos.txt
+[root@fea1b77f79c1 data]# cat any.txt 
+A line written by centos
+[root@fea1b77f79c1 data]# exit
+exit
+vagrant@ubuntu-server1:~/data$ cd /data
+vagrant@ubuntu-server1:/data$ ls
+centos.txt
+vagrant@ubuntu-server1:/data$ touch host.txt
+vagrant@ubuntu-server1:/data$ echo "Written by host" >> host.txt
+vagrant@ubuntu-server1:/data$ docker run -v /data:/data --name debian_d -it debian bash
+root@febb6db0ab29:/# ls
+bin  boot  data  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@febb6db0ab29:/# cd data 
+root@febb6db0ab29:/data# ls -lh
+total 8.0K
+-rw-r--r-- 1 root root 25 Dec 18 17:16 centos.txt
+-rw-r--r-- 1 root root 16 Dec 18 17:19 host.txt
+root@febb6db0ab29:/data# cat centos.txt 
+A line written by centos
+root@febb6db0ab29:/data# cat host.txt 
+Written by host
+root@febb6db0ab29:/data# 
+```
+
+---
 
 ## Задача 4 (*)
 
