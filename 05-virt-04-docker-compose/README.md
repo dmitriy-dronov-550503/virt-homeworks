@@ -32,7 +32,7 @@
 **Решение**
 
 <p align="center">
-  <img width="1200" src="./assets/task1.png">
+  <img width="1200" src="./assets/task1.PNG">
 </p>
 
 ---
@@ -47,8 +47,8 @@
 **Решение**
 
 <p align="center">
-  <img width="1200" src="./assets/task2.png">
-  <img width="1200" src="./assets/task2_1.png">
+  <img width="1200" src="./assets/task2.PNG">
+  <img width="1200" src="./assets/task2_1.PNG">
 </p>
 
 ---
@@ -67,7 +67,7 @@
 **Решение**
 
 <p align="center">
-  <img width="1200" src="./assets/task3.png">
+  <img width="1200" src="./assets/task3.PNG">
 </p>
 
 ---
